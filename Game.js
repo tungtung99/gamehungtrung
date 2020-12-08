@@ -1,7 +1,7 @@
 function Game(canvas) {
     this.canvas = canvas
-    let FRAME_BETWEEN_CARS = 150
-    let nextCarCounter = 0
+    let FRAME_BETWEEN_EGGS = 150
+    let nextEggCounter = 0
     let bar = new Bar(40,90);
     var bowl = new basket(250,500);
     let chickens = [ 
@@ -14,12 +14,12 @@ function Game(canvas) {
     let eggs = []
     let ctx = this.canvas.getContext("2d");
     this.requestNextFrame = function () {
-        if (nextCarCounter === 0) {
+        if (nextEggCounter === 0) {
             eggs.push(initRandomEgg())
-            nextCarCounter = FRAME_BETWEEN_CARS
+            nextEggCounter = FRAME_BETWEEN_EGGS
         }
         eggFalls()
-        nextCarCounter--
+        nextEggCounter--
     }
     this.draw = function () {
         clearCanvas()
