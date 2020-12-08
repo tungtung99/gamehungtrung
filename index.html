@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="egg.css">
+    <script src="Game.js"></script>
+    <script src="basket.js"></script>
+    <script src="chicken.js"></script>
+    <script src="bar.js"></script>
+    <script src="egg.js"></script>
+</head>
+
+<body class="container">
+    <img src="images/bar.png" alt="" id="bar" hidden>
+    <img src="images/chicken.png" alt="" id="chicken" hidden>
+    <div class="row">
+        <div class="col-sm-4">
+            <canvas id="myCanvas" width="300" height="150"></canvas>
+        </div>
+
+        <div class="col-sm-8" style="height: 150px;"><button onclick="playgame()"
+                style="background-color: #008CBA; color: white; font-size: 25px; margin-top: 50px; border-radius: 10px;">Play
+                Game</button></div>
+    </div>
+    <div style="background-color: rgb(121, 152, 245); width: 550px; height: 550px;">
+        <canvas id="gameCanvas" width="550" height="550" style="border: 1px solid black;"></canvas>
+    </div>
+    <code>Score: <span id="score"></span></code>
+    <script>
+        var c = document.getElementById("myCanvas");
+        var ctx = c.getContext("2d");
+
+        ctx.font = "20px Georgia";
+        ctx.fillText("Game!", 10, 50);
+
+        ctx.font = "30px Verdana";
+        // Tạo dải màu
+        var gradient = ctx.createLinearGradient(0, 0, c.width, 0);
+        gradient.addColorStop("0", "magenta");
+        gradient.addColorStop("0.5", "blue");
+        gradient.addColorStop("1.0", "red");
+        // Đổ dải màu lên chữ
+        ctx.fillStyle = gradient;
+        ctx.fillText("Hứng Trứng", 10, 90);
+    </script>
+    <script src="main.js"></script>
+</body>
+
+</html>
