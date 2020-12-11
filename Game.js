@@ -85,13 +85,12 @@ function Game(canvas) {
             chickens[i].draw(ctx)
         }
     }
-    document.addEventListener('keydown',function(event){
-        console.log(event);
-        if(event.keyCode == 37){
-            document.addEventListener('click',bowl.moveLeft(ctx))
+    function conTrol(keycode){
+        if(keycode==37){
+            bowl.moveLeft(ctx)
         }
-        else if(event.keyCode == 39){
-            document.addEventListener('click',bowl.moveRight(ctx))
+        else if(keycode==39){
+            bowl.moveRight(ctx)
         }
-    });
+    }
 }
