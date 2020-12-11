@@ -1,6 +1,8 @@
 function basket(x, y) {
     this.x = x;
     this.y = y;
+    this.height = 50;
+    this.width = 50;
     this.vX = 8
     this.vY = 0
     this.moveLeft = function () {

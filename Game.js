@@ -1,15 +1,18 @@
-function Game(canvas) {
+function Game(canvas,scoreElement) {
     this.canvas = canvas
+    this.scoreElement = scoreElement
     let FRAME_BETWEEN_EGGS = 150
     let nextEggCounter = 0
-    let bar = new Bar(40,90);
-    var bowl = new basket(250,500);
-    let chickens = [ 
-        new chicken(50,10),
-        new chicken(150,10),
-        new chicken(250,10),
-        new chicken(350,10),
-        new chicken(450,10),
+    let score = 0
+    //let timetoclear = 3;
+    let bar = new Bar(40, 90);
+    var bowl = new basket(250, 500);
+    let chickens = [
+        new chicken(50, 10),
+        new chicken(150, 10),
+        new chicken(250, 10),
+        new chicken(350, 10),
+        new chicken(450, 10),
     ]
     let eggs = []
     let ctx = this.canvas.getContext("2d");
@@ -22,11 +25,14 @@ function Game(canvas) {
         nextEggCounter--
     }
     this.draw = function () {
+        scoreElement.innerText = score
         clearCanvas()
         drawEggs()
+        //timetoclearEggFall()
         drawbar()
         drawChickens()
-        drawBowl()    
+        drawBowl()
+        
     }
     function initRandomEgg() {
         let x = Math.round(Math.random() * 5)
@@ -58,10 +64,15 @@ function Game(canvas) {
         }
     }
     function drawEggs() {
-        let check=1;
+        check=1;
         for (let i = 0; i < eggs.length; i++) {
             if (eggs[i].y < 530) {
                 eggs[i].draw(ctx)
+                if (eggs[i].y + parseInt(bowl.height) == 530 && (eggs[i].x <= eggs[i].x + 24 && eggs[i].x >= eggs[i].x-24)) {
+                    if(bowl.x<= eggs[i].x + 9 && bowl.x>= eggs[i].x-39){
+                        score++;
+                    }
+                }
             }
             else {
                 eggs[i].drawEggFall(ctx)
@@ -74,10 +85,21 @@ function Game(canvas) {
             }
         }
     }
-    function drawBowl(){
+    /*function timetoclearEggFall() {
+        for (let i = 0; i < eggs.length; i++) {
+            if (eggs[i].y >= 530) {
+                timetoclear--;
+                if (timetoclear == 0) {
+                    eggs[i].clearEggFall(ctx)
+                    timetoclear = 3
+                }
+            }
+        }
+    }*/
+    function drawBowl() {
         bowl.draw(ctx)
     }
-    function drawbar(){
+    function drawbar() {
         bar.draw(ctx)
     }
     function drawChickens() {
@@ -85,12 +107,14 @@ function Game(canvas) {
             chickens[i].draw(ctx)
         }
     }
-    function conTrol(keycode){
-        if(keycode==37){
+    this.controlgame = function (keycode) {
+        if (keycode == 37) {
             bowl.moveLeft(ctx)
+            console.log('toa do gio: ' + bowl.x)
         }
-        else if(keycode==39){
+        else if (keycode == 39) {
             bowl.moveRight(ctx)
+            console.log('toa do gio: ' + bowl.x)
         }
     }
 }
